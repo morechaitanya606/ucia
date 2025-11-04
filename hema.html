@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project HEMA - UICA</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2d1b3c;
+      --secondary: #e29578;
+      --accent: #ffb4a2;
+      --text-dark: #222;
+      --text-light: #fff;
+      --bg-light: #faf7f5;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(45, 27, 60, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-light);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      margin-top: 70px;
+      height: 70vh;
+      background: linear-gradient(135deg, #e29578 0%, #ffb4a2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path fill="rgba(255,255,255,0.15)" d="M0,200 Q300,100 600,200 T1200,200 L1200,600 L0,600 Z"/></svg>');
+      background-size: cover;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      padding: 2rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+    }
+
+    .hero .subtitle {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      opacity: 0.95;
+    }
+
+    .hero .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 5%;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .overview, .focus-areas, .impact-section {
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      animation: fadeInUp 1s ease;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    /* Focus Areas */
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .area-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border-top: 4px solid var(--secondary);
+    }
+
+    .area-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .area-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .area-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .area-description {
+      color: #666;
+    }
+
+    .area-features {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .area-features li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #555;
+    }
+
+    .area-features li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+      font-weight: bold;
+    }
+
+    /* Impact */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .impact-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .impact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .impact-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-label {
+      font-size: 1.1rem;
+      color: #666;
+      font-weight: 600;
+    }
+
+    /* Goal */
+    .goal-box {
+      background: linear-gradient(135deg, #e29578 0%, #ffb4a2 100%);
+      border-radius: 20px;
+      padding: 3rem;
+      color: var(--text-light);
+      text-align: center;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .goal-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      color: var(--text-light);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(226,149,120,0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(226,149,120,0.5);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: var(--text-light);
+      padding: 3rem 5%;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">UICA</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="scope-of-work.html">Our Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Project HEMA</h1>
+      <p class="subtitle">Handloom Empowerment for Mahila Artisans</p>
+      <p class="tagline">Reviving Khadi. Empowering Women. Weaving Sustainable Futures.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="overview">
+      <h2 class="section-title">About Project HEMA</h2>
+      <p>
+        Project HEMA is UICA’s initiative dedicated to reviving and modernizing the age-old tradition of Khadi weaving. 
+        It equips rural women artisans across Maharashtra—especially in Pune and Satara—with technical skills, design know-how, 
+        and entrepreneurial confidence.
+      </p>
+      <p>
+        Through immersive workshops, artisans learn every stage of Khadi production: from spinning, weaving, and dyeing 
+        natural fibers to mastering advanced loom techniques. HEMA also focuses on value addition—pattern making, premium 
+        finishing, and product diversification—to transform raw Khadi cloth into market-ready items such as 
+        bedsheets, frocks, suits, kurtas, and sarees of exceptional quality.
+      </p>
+    </section>
+
+    <section class="focus-areas">
+      <h2 class="section-title">Focus Areas</h2>
+      <div class="areas-grid">
+        <div class="area-card">
+          <div class="area-icon">🧵</div>
+          <h3 class="area-title">Weaving & Loom Training</h3>
+          <p class="area-description">Hands-on training on modern and traditional looms to enhance efficiency and creativity.</p>
+          <ul class="area-features">
+            <li>Spinning and weaving fundamentals</li>
+            <li>Natural dyeing techniques</li>
+            <li>Maintenance of handlooms</li>
+          </ul>
+        </div>
+
+        <div class="area-card">
+          <div class="area-icon">🎨</div>
+          <h3 class="area-title">Design & Value Addition</h3>
+          <p class="area-description">Creative modules focusing on design innovation and modern product finishing.</p>
+          <ul class="area-features">
+            <li>Pattern design and color theory</li>
+            <li>Contemporary fashion elements</li>
+            <li>Product diversification workshops</li>
+          </ul>
+        </div>
+
+        <div class="area-card">
+          <div class="area-icon">💼</div>
+          <h3 class="area-title">Entrepreneurship</h3>
+          <p class="area-description">Mentorship programs to help women artisans become successful entrepreneurs.</p>
+          <ul class="area-features">
+            <li>Business planning and costing</li>
+            <li>Marketing and brand development</li>
+            <li>E-commerce and online sales training</li>
+          </ul>
+        </div>
+
+        <div class="area-card">
+          <div class="area-icon">🌿</div>
+          <h3 class="area-title">Sustainability & Community</h3>
+          <p class="area-description">Encouraging eco-friendly, ethical, and community-based textile practices.</p>
+          <ul class="area-features">
+            <li>Organic cotton and eco-dyes</li>
+            <li>Fair trade and cooperative models</li>
+            <li>Community collaboration networks</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="impact-section">
+      <h2 class="section-title">Our Impact</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-number">300+</div>
+          <div class="impact-label">Women Trained</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">20+</div>
+          <div class="impact-label">Weaving Units Revived</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">50+</div>
+          <div class="impact-label">Products Developed</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">10+</div>
+          <div class="impact-label">Market Partnerships</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="goal-box">
+      <h2>🎯 Project Goal</h2>
+      <p>
+        To empower women artisans with the skills, creativity, and confidence to lead sustainable handloom enterprises, 
+        preserving Khadi heritage while building self-reliant communities that thrive economically and socially.
+      </p>
+    </section>
+
+    <section class="cta-section">
+      <h2>Join Project HEMA</h2>
+      <p>Support rural artisans and help us sustain the legacy of Khadi weaving while empowering women across Maharashtra.</p>
+      <a href="contact.html" class="cta-button">Get Involved</a>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 UICA - United Innovation and Care Association. All rights reserved.</p>
+    <p style="margin-top: 1rem; opacity: 0.7;">Weaving heritage. Empowering women. Building futures.</p>
+  </footer>
+</body>
+</html>

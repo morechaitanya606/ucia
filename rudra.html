@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project RUDRA - UICA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #171d37;
+            --secondary: #667eea;
+            --accent: #764ba2;
+            --text-dark: #212121;
+            --text-light: #ffffff;
+            --bg-light: #f5f7fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(23, 29, 55, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            height: 70vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path fill="rgba(255,255,255,0.1)" d="M0,200 Q300,100 600,200 T1200,200 L1200,600 L0,600 Z"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        /* Overview Section */
+        .overview {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            animation: slideInUp 0.8s ease;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .overview-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        /* Focus Areas Grid */
+        .focus-areas {
+            margin: 4rem 0;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .area-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .area-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .area-card:nth-child(2) {
+            border-top-color: #f093fb;
+        }
+
+        .area-card:nth-child(3) {
+            border-top-color: #4facfe;
+        }
+
+        .area-card:nth-child(4) {
+            border-top-color: #43e97b;
+        }
+
+        .area-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .area-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .area-description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .area-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .area-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .area-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Program Structure */
+        .program-structure {
+            background: linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05));
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--secondary), var(--accent));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 4px solid var(--bg-light);
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Impact Section */
+        .impact-section {
+            margin: 4rem 0;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .impact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .impact-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Goal Box */
+        .goal-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: var(--text-light);
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .goal-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .goal-box h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .goal-box p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102,126,234,0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 3rem 5%;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: 60px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .areas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">UICA</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scope-of-work.html">Our Work</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Project RUDRA</h1>
+            <p class="subtitle">Rural & Urban Development through Resilience and Action</p>
+            <p class="tagline">Empowering communities through skill development, sustainable practices, and innovation</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Overview -->
+        <section class="overview">
+            <h2 class="section-title">About Project RUDRA</h2>
+            <p class="overview-text">
+                Project RUDRA is UICA's flagship initiative designed to transform rural and urban communities by providing comprehensive training and development programs. We focus on equipping youth and women with cutting-edge skills that make them competitive in today's global economy while preserving traditional knowledge and practices.
+            </p>
+            <p class="overview-text">
+                Through a holistic approach combining technology, sustainability, traditional arts, and environmental conservation, we aim to create self-reliant individuals who can thrive in both modern and traditional economies while contributing to their communities' overall development.
+            </p>
+        </section>
+
+        <!-- Focus Areas -->
+        <section class="focus-areas">
+            <h2 class="section-title">Focus Areas</h2>
+            <div class="areas-grid">
+                <div class="area-card">
+                    <div class="area-icon">💻</div>
+                    <h3 class="area-title">Technology, AI & GIS</h3>
+                    <p class="area-description">
+                        Empowering individuals with modern technological skills to compete in the digital economy.
+                    </p>
+                    <ul class="area-features">
+                        <li>Artificial Intelligence basics and applications</li>
+                        <li>Geographic Information Systems (GIS) for smart farming</li>
+                        <li>Data analytics and visualization</li>
+                        <li>Digital literacy and computer skills</li>
+                        <li>IoT applications in agriculture</li>
+                    </ul>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-icon">🌱</div>
+                    <h3 class="area-title">Sustainable Farming</h3>
+                    <p class="area-description">
+                        Training in organic and climate-resilient agricultural practices for food security.
+                    </p>
+                    <ul class="area-features">
+                        <li>Organic farming techniques</li>
+                        <li>Permaculture design principles</li>
+                        <li>Water conservation and management</li>
+                        <li>Soil health and composting</li>
+                        <li>Climate-resilient crop selection</li>
+                    </ul>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-icon">✂️</div>
+                    <h3 class="area-title">Stitching, Embroidery & Art</h3>
+                    <p class="area-description">
+                        Preserving traditional crafts while creating modern income opportunities.
+                    </p>
+                    <ul class="area-features">
+                        <li>Traditional embroidery techniques</li>
+                        <li>Modern garment construction</li>
+                        <li>Fashion design basics</li>
+                        <li>Textile arts and crafts</li>
+                        <li>Product development and marketing</li>
+                    </ul>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-icon">🌍</div>
+                    <h3 class="area-title">Environment & Wildlife</h3>
+                    <p class="area-description">
+                        Building awareness and skills for environmental conservation and eco-tourism.
+                    </p>
+                    <ul class="area-features">
+                        <li>Wildlife protection and conservation</li>
+                        <li>Sustainable resource management</li>
+                        <li>Eco-tourism development</li>
+                        <li>Biodiversity preservation</li>
+                        <li>Climate change mitigation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Program Structure -->
+        <section class="program-structure">
+            <h2 class="section-title">Program Implementation</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="phase-title">Phase 1: Assessment & Selection</h3>
+                        <p class="phase-description">
+                            Community needs assessment, participant selection, and baseline skill evaluation to create customized training programs.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="phase-title">Phase 2: Foundation Training</h3>
+                        <p class="phase-description">
+                            Basic skills development in chosen focus areas with emphasis on both theoretical knowledge and practical application.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="phase-title">Phase 3: Advanced Skills</h3>
+                        <p class="phase-description">
+                            Specialized training in advanced techniques, technology integration, and entrepreneurship development.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="phase-title">Phase 4: Implementation & Support</h3>
+                        <p class="phase-description">
+                            Ongoing mentorship, market linkages, and continuous support to ensure successful application of skills.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact -->
+        <section class="impact-section">
+            <h2 class="section-title">Our Impact</h2>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-number">500+</div>
+                    <div class="impact-label">Trained Individuals</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">25+</div>
+                    <div class="impact-label">Villages Covered</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">80%</div>
+                    <div class="impact-label">Employment Rate</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-number">15+</div>
+                    <div class="impact-label">Partner Organizations</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Goal -->
+        <section class="goal-box">
+            <h2>🎯 Project Goal</h2>
+            <p>
+                Build self-sustainable, competitive individuals who can thrive in both traditional and modern economies while contributing to environmental conservation and community development. Through comprehensive skill development and continuous support, we aim to create lasting positive change in rural and urban communities across India.
+            </p>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <h2>Join Project RUDRA</h2>
+            <p>Be part of the transformation. Help us empower communities through skill development and sustainable practices.</p>
+            <a href="contact.html" class="cta-button">Get Involved</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 UICA - United Innovation and Care Association. All rights reserved.</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">Building sustainable futures together</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.area-card, .impact-card, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

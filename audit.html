@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environmental Auditing & Consulting - UICA</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #113d2d;
+      --secondary: #00b09b;
+      --accent: #96c93d;
+      --text-dark: #212121;
+      --text-light: #ffffff;
+      --bg-light: #f5f7fa;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(17, 61, 45, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      padding: 1rem 5%;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-light);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 70px;
+      height: 70vh;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--text-light);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .hero .subtitle {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 5%;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      border-radius: 2px;
+    }
+
+    /* Overview */
+    .overview {
+      background: #fff;
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      margin-bottom: 3rem;
+    }
+
+    .overview p {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    /* Focus Areas */
+    .focus-areas { margin: 4rem 0; }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .areas-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .areas-grid { grid-template-columns: 1fr; }
+    }
+
+    .area-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: 0.3s ease;
+      border-top: 4px solid var(--secondary);
+    }
+
+    .area-card:hover { transform: translateY(-8px); }
+
+    .area-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .area-title { font-size: 1.4rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem; }
+    .area-description { color: #666; }
+
+    /* Timeline */
+    .program-structure {
+      background: linear-gradient(135deg, rgba(0,176,155,0.05), rgba(150,201,61,0.05));
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+
+    .timeline { position: relative; padding: 2rem 0; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(var(--secondary), var(--accent));
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      width: 45%;
+    }
+
+    .phase-title { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+    .phase-description { color: #666; margin-top: 0.5rem; }
+
+    /* Impact */
+    .impact-section { margin: 4rem 0; }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .impact-card {
+      background: #fff;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: 0.3s ease;
+    }
+
+    .impact-card:hover { transform: translateY(-5px); }
+
+    .impact-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .impact-label { font-weight: 600; color: #666; }
+
+    /* Goal */
+    .goal-box {
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      color: #fff;
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      background: #fff;
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      color: #fff;
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s ease;
+    }
+
+    .cta-button:hover { transform: translateY(-3px); }
+
+    footer {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 3rem 5%;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">UICA</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="scope-of-work.html">Our Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Environmental Auditing & Consulting</h1>
+      <p class="subtitle">Driving Green Excellence and Sustainable Compliance</p>
+      <p class="tagline">Empowering organizations to achieve environmental responsibility through audits, consulting, and strategy</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Overview -->
+    <section class="overview">
+      <h2 class="section-title">About the Program</h2>
+      <p>
+        Environmental Auditing & Consulting provides sustainability services to businesses, institutions, and community organizations across Maharashtra—anchored in green principles and regulatory compliance.
+      </p>
+      <p>
+        Our experts conduct Energy, Zero-Waste, and ESG/CSR Compliance Audits to identify opportunities for cost savings, reduced emissions, and enhanced social impact.
+      </p>
+      <p>
+        Beyond auditing, our consulting team helps implement tailored Sustainability Roadmaps, staff training, and connections to CSR and government incentive programs.
+      </p>
+    </section>
+
+    <!-- Focus Areas -->
+    <section class="focus-areas">
+      <h2 class="section-title">Focus Areas</h2>
+      <div class="areas-grid">
+        <div class="area-card">
+          <div class="area-icon">⚡</div>
+          <h3 class="area-title">Energy Audits</h3>
+          <p class="area-description">Assessing energy consumption and identifying efficiency improvements.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon">♻️</div>
+          <h3 class="area-title">Zero-Waste Audits</h3>
+          <p class="area-description">Mapping waste streams and designing strategies for reduction and recycling.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon">🌿</div>
+          <h3 class="area-title">ESG & CSR Compliance</h3>
+          <p class="area-description">Evaluating sustainability performance against global standards.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-icon">📊</div>
+          <h3 class="area-title">Sustainability Consulting</h3>
+          <p class="area-description">Guiding clients in implementation, training, and strategic partnerships.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Structure -->
+    <section class="program-structure">
+      <h2 class="section-title">Process Flow</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="phase-title">Phase 1: Assessment</h3>
+            <p class="phase-description">Initial consultation, data gathering, and audit scoping.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="phase-title">Phase 2: Auditing</h3>
+            <p class="phase-description">On-site inspections, data analysis, and compliance evaluation.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="phase-title">Phase 3: Strategy Design</h3>
+            <p class="phase-description">Developing actionable sustainability roadmaps and improvement plans.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="phase-title">Phase 4: Implementation</h3>
+            <p class="phase-description">Supporting clients in execution, monitoring, and continuous improvement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="impact-section">
+      <h2 class="section-title">Impact Highlights</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-number">200+</div>
+          <div class="impact-label">Organizations Audited</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">30%</div>
+          <div class="impact-label">Average Energy Savings</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">50+</div>
+          <div class="impact-label">Zero-Waste Implementations</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">15+</div>
+          <div class="impact-label">CSR Partnerships</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Goal -->
+    <section class="goal-box">
+      <h2>🌎 Our Goal</h2>
+      <p>
+        To empower organizations across Maharashtra to achieve measurable sustainability outcomes—through expert audits, practical consulting, and committed partnerships for a greener future.
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <h2>Partner with Us</h2>
+      <p>Transform your organization into a model of sustainability and compliance excellence.</p>
+      <a href="contact.html" class="cta-button">Get in Touch</a>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 UICA - United Innovation and Care Association. All rights reserved.</p>
+    <p style="margin-top: 1rem; opacity: 0.7;">Advancing sustainability, one audit at a time</p>
+  </footer>
+</body>
+</html>
