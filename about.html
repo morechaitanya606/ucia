@@ -1,313 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Get involved with UICA - Volunteer, donate, or partner with us to empower rural women and youth.">
   <title>Get Involved - UICA</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --primary: #4b1d88;
-      --secondary: #ff8a00;
-      --accent: #ffb347;
-      --bg-light: #faf7ff;
-      --text-dark: #222;
-      --text-light: #fff;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg-light);
-      color: var(--text-dark);
-      line-height: 1.6;
-    }
-
-    /* Navbar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(75, 29, 136, 0.97);
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-      padding: 1rem 5%;
-      z-index: 1000;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--text-light);
-      text-decoration: none;
-      letter-spacing: 1px;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--secondary);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover::after { width: 100%; }
-
-    /* Hero Section */
-    .hero {
-      margin-top: 70px;
-      height: 70vh;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: var(--text-light);
-      padding: 2rem;
-    }
-
-    .hero-content {
-      max-width: 900px;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 5%;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 1rem;
-      text-align: center;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--secondary);
-      border-radius: 2px;
-    }
-
-    .intro {
-      text-align: center;
-      font-size: 1.1rem;
-      color: #444;
-      max-width: 800px;
-      margin: 0 auto 3rem auto;
-      line-height: 1.8;
-    }
-
-    /* Cards */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    @media (max-width: 1024px) {
-      .cards-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 700px) {
-      .cards-grid { grid-template-columns: 1fr; }
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      padding: 2rem;
-      text-align: center;
-      transition: 0.3s ease;
-      border-top: 4px solid var(--secondary);
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-    }
-
-    .card-icon {
-      font-size: 3rem;
-      color: var(--secondary);
-      margin-bottom: 1rem;
-    }
-
-    .card-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .card-text {
-      color: #555;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    /* CTA */
-    .cta-section {
-      text-align: center;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--text-light);
-      border-radius: 20px;
-      padding: 4rem 2rem;
-      margin-top: 5rem;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    }
-
-    .cta-section h2 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    .cta-section p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      margin-bottom: 2rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background: #fff;
-      color: var(--primary);
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.3s ease;
-    }
-
-    .cta-button:hover {
-      background: var(--secondary);
-      color: #fff;
-    }
-
-    footer {
-      background: var(--primary);
-      color: #fff;
-      text-align: center;
-      padding: 3rem 5%;
-      margin-top: 4rem;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
 
-  <!-- Navbar -->
+<body>
+  <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">UICA</a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="scope-of-work.html">Our Work</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="about.html" class="active">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- Hero Section -->
+  <section class="hero" style="min-height: 70vh; padding-top: 8rem;">
     <div class="hero-content">
-      <h1>Get Involved</h1>
-      <p>Ready to Make an Impact? Join hands with us to empower rural women and youth—through volunteering, innovation, donations, or partnerships.</p>
+      <h1>Get <span>Involved</span></h1>
+      <p>Ready to Make an Impact? Join hands with us to empower rural women and youth—through volunteering, innovation,
+        donations, or partnerships.</p>
     </div>
   </section>
 
-  <div class="container">
-    <!-- Intro -->
-    <p class="intro">
-      Whether you prefer rolling up your sleeves on the ground, shaping innovation, contributing funds, or building strategic partnerships, there’s a place for you at UICA. Every action counts—be part of the change.
-    </p>
+  <!-- Cards Section -->
+  <section class="section">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <p
+        style="text-align: center; font-size: 1.1rem; color: var(--gray-600); max-width: 800px; margin: 0 auto 3rem auto; line-height: 1.8;">
+        Whether you prefer rolling up your sleeves on the ground, shaping innovation, contributing funds, or building
+        strategic partnerships, there's a place for you at UICA. Every action counts—be part of the change.
+      </p>
 
-    <!-- Cards -->
-    <section class="cards-grid">
-      <div class="card">
-        <div class="card-icon">🤝</div>
-        <h3 class="card-title">Volunteer with Us</h3>
-        <p class="card-text">
-          Assist at workshops, mentor trainees in stitching, tech, or sustainability, and fuel community impact.
-        </p>
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <!-- Volunteer Card -->
+        <div class="card">
+          <div class="card-content" style="text-align: center;">
+            <div style="font-size: 3.5rem; margin-bottom: 1rem;">🤝</div>
+            <h3 class="card-title">Volunteer with Us</h3>
+            <p class="card-text">
+              Assist at workshops, mentor trainees in stitching, tech, or sustainability, and fuel community impact.
+            </p>
+            <a href="contact.html" class="card-link" style="margin-top: 1.5rem;">Join Now →</a>
+          </div>
+        </div>
+
+        <!-- Fellowship Card -->
+        <div class="card">
+          <div class="card-content" style="text-align: center;">
+            <div style="font-size: 3.5rem; margin-bottom: 1rem;">🌱</div>
+            <h3 class="card-title">AFIU Fellowship</h3>
+            <p class="card-text">
+              Dive into a six-month village immersion to co-create sustainable products and drive grassroots innovation.
+            </p>
+            <a href="AFIU.html" class="card-link" style="margin-top: 1.5rem;">Learn More →</a>
+          </div>
+        </div>
+
+        <!-- Donate Card -->
+        <div class="card">
+          <div class="card-content" style="text-align: center;">
+            <div style="font-size: 3.5rem; margin-bottom: 1rem;">💚</div>
+            <h3 class="card-title">Donate</h3>
+            <p class="card-text">
+              Fuel artisan livelihoods, support training programs, and help us scale women-led enterprises across
+              Maharashtra.
+            </p>
+            <a href="contact.html" class="card-link" style="margin-top: 1.5rem;">Contribute →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="card">
-        <div class="card-icon">🌱</div>
-        <h3 class="card-title">AFIU Fellowship</h3>
-        <p class="card-text">
-          Dive into a six-month village immersion to co-create sustainable products and drive grassroots innovation.
+      <!-- CTA Section -->
+      <div
+        style="margin-top: 5rem; text-align: center; background: var(--accent-gradient); color: var(--white); border-radius: var(--radius-2xl); padding: 4rem 2rem; box-shadow: var(--shadow-2xl);">
+        <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; color: var(--white);">Join the UICA
+          Movement</h2>
+        <p
+          style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Together, we can create a future where every artisan and youth thrives through skill, sustainability, and
+          self-reliance.
         </p>
+        <a href="contact.html" class="btn"
+          style="background: var(--white); color: var(--primary); font-weight: 700;">Get Involved Today</a>
       </div>
+    </div>
+  </section>
 
-      <div class="card">
-        <div class="card-icon">💚</div>
-        <h3 class="card-title">Donate</h3>
-        <p class="card-text">
-          Fuel artisan livelihoods, support training programs, and help us scale women-led enterprises across Maharashtra.
-        </p>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-      <h2>Join the UICA Movement</h2>
-      <p>Together, we can create a future where every artisan and youth thrives through skill, sustainability, and self-reliance.</p>
-      <a href="contact.html" class="cta-button">Get Involved Today</a>
-    </section>
-  </div>
-
-  <footer>
+  <!-- Footer -->
+  <footer class="footer">
     <p>&copy; 2025 UICA - United Innovation and Care Association. All rights reserved.</p>
     <p style="opacity: 0.7; margin-top: 0.5rem;">Empowering communities through collaboration and creativity</p>
   </footer>
 
+  <script src="main.js"></script>
 </body>
+
 </html>
