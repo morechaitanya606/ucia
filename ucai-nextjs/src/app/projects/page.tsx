@@ -57,12 +57,20 @@ const projects = [
     },
 ];
 
-// Custom cursor
+// Custom cursor (desktop only)
 function CustomCursor({ isHovering }: { isHovering: boolean }) {
     const [position, setPosition] = useState({ x: -100, y: -100 });
     const [isVisible, setIsVisible] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
+        // Detect touch device
+        setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    }, []);
+
+    useEffect(() => {
+        if (isTouchDevice) return;
+
         const handleMouseMove = (e: MouseEvent) => {
             setPosition({ x: e.clientX, y: e.clientY });
             setIsVisible(true);
@@ -75,9 +83,9 @@ function CustomCursor({ isHovering }: { isHovering: boolean }) {
             window.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseleave', handleMouseLeave);
         };
-    }, []);
+    }, [isTouchDevice]);
 
-    if (!isVisible) return null;
+    if (isTouchDevice || !isVisible) return null;
 
     return (
         <motion.div
@@ -541,7 +549,8 @@ export default function ProjectsPage() {
                                 animate={{ x: [0, 15, 0] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                             >
-                                Scroll
+                                <span className="hidden sm:inline">Scroll</span>
+                                <span className="sm:hidden">Swipe</span>
                             </motion.span>
                             <motion.div
                                 className="w-12 h-px bg-white/30"
@@ -561,11 +570,14 @@ export default function ProjectsPage() {
                 *::-webkit-scrollbar {
                     display: none !important;
                 }
-                * {
-                    cursor: none !important;
-                }
-                a, button {
-                    cursor: none !important;
+                /* Only hide cursor on desktop/non-touch devices */
+                @media (hover: hover) and (pointer: fine) {
+                    * {
+                        cursor: none !important;
+                    }
+                    a, button {
+                        cursor: none !important;
+                    }
                 }
             `}</style>
         </>

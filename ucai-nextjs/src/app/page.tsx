@@ -18,7 +18,6 @@ import {
 } from 'lucide-react';
 import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
-import { BentoGrid, BentoItem, FeatureCard, StatCard } from '@/components/BentoGrid';
 import { ImpactStoriesSection } from '@/components/ImpactStories';
 
 const impactStories = [
@@ -106,44 +105,44 @@ export default function HomePage() {
       <Hero />
 
       {/* Projects Section */}
-      <section className="py-32 px-6 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-10 sm:mb-16 md:mb-20"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-6"
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-violet-100 text-violet-700 text-xs sm:text-sm font-medium mb-4 sm:mb-6"
             >
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
               Our Initiatives
             </motion.div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
               Transformative{' '}
               <span className="bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">
                 Projects
               </span>
             </h2>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed px-4">
               Each initiative is designed to create lasting impact through innovation,
               sustainability, and community empowerment.
             </p>
           </motion.div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
               >
                 <ProjectCard {...project} />
@@ -156,23 +155,23 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-16"
+            className="text-center mt-10 sm:mt-16"
           >
             <Link
               href="/projects"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gray-900 text-white font-semibold rounded-full hover:bg-gray-800 transition-all duration-300 group"
+              className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 text-white font-semibold rounded-full hover:bg-gray-800 transition-all duration-300 group text-sm sm:text-base"
             >
               <span>View All Projects</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -180,15 +179,15 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center p-8 rounded-3xl bg-gradient-to-br from-violet-50 to-pink-50 border border-violet-100"
+                className="text-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-violet-50 to-pink-50 border border-violet-100"
               >
-                <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center">
-                  <stat.icon className="w-7 h-7 text-white" />
+                <div className="w-10 h-10 sm:w-12 md:w-14 sm:h-12 md:h-14 mx-auto mb-3 sm:mb-4 rounded-xl sm:rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center">
+                  <stat.icon className="w-5 h-5 sm:w-6 md:w-7 sm:h-6 md:h-7 text-white" />
                 </div>
-                <div className="text-4xl font-bold text-gray-900 mb-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">
                   {stat.value}
                 </div>
-                <div className="text-gray-500 font-medium">{stat.label}</div>
+                <div className="text-xs sm:text-sm md:text-base text-gray-500 font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -196,39 +195,39 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 px-6 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-10 sm:mb-16 md:mb-20"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
               Why Choose{' '}
               <span className="bg-gradient-to-r from-cyan-500 to-violet-600 bg-clip-text text-transparent">
                 UICA?
               </span>
             </h2>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-500 max-w-2xl mx-auto px-4">
               We combine technology, tradition, and community to create sustainable change.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {/* Feature 1 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0 }}
-              className="group p-8 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-500"
+              className="group p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-500"
             >
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center mb-6">
-                <Target className="w-7 h-7 text-white" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center mb-4 sm:mb-6">
+                <Target className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Mission-Driven Impact</h3>
-              <p className="text-gray-500 leading-relaxed">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Mission-Driven Impact</h3>
+              <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
                 Every project is designed with a clear goal: to create measurable, lasting
                 change in communities while empowering individuals.
               </p>
@@ -240,13 +239,13 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="group p-8 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-500"
+              className="group p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-500"
             >
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-violet-500 flex items-center justify-center mb-6">
-                <Zap className="w-7 h-7 text-white" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-cyan-500 to-violet-500 flex items-center justify-center mb-4 sm:mb-6">
+                <Zap className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Tech-Enabled Solutions</h3>
-              <p className="text-gray-500 leading-relaxed">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Tech-Enabled Solutions</h3>
+              <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
                 We leverage AI, GIS, and digital tools to amplify impact and reach
                 communities in innovative ways.
               </p>
@@ -258,13 +257,13 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="group p-8 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-500 md:col-span-2 lg:col-span-1"
+              className="group p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-500 sm:col-span-2 lg:col-span-1"
             >
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center mb-6">
-                <Globe className="w-7 h-7 text-white" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center mb-4 sm:mb-6">
+                <Globe className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Local & Global Vision</h3>
-              <p className="text-gray-500 leading-relaxed">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Local & Global Vision</h3>
+              <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
                 Solutions rooted in local knowledge combined with global best practices
                 for maximum effectiveness.
               </p>
@@ -277,40 +276,40 @@ export default function HomePage() {
       <ImpactStoriesSection stories={impactStories} />
 
       {/* CTA Section */}
-      <section className="py-32 px-6 bg-white">
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative overflow-hidden rounded-[2.5rem] text-center"
+            className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] text-center"
           >
             {/* Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-violet-600 via-purple-600 to-pink-500" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
 
             {/* Decorative Elements */}
-            <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/10 blur-2xl" />
-            <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-pink-500/20 blur-2xl" />
+            <div className="absolute top-6 sm:top-10 left-6 sm:left-10 w-20 sm:w-32 h-20 sm:h-32 rounded-full bg-white/10 blur-xl sm:blur-2xl" />
+            <div className="absolute bottom-6 sm:bottom-10 right-6 sm:right-10 w-24 sm:w-40 h-24 sm:h-40 rounded-full bg-pink-500/20 blur-xl sm:blur-2xl" />
 
             {/* Content */}
-            <div className="relative z-10 px-8 py-20 md:px-16 md:py-24">
+            <div className="relative z-10 px-6 py-12 sm:px-12 sm:py-16 md:px-16 md:py-24">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6"
               >
                 Let&apos;s Build a Better
-                <br />
-                Future Together
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>Future Together
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
+                className="text-white/80 text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto px-2"
               >
                 Your support can transform lives. Join us as a donor, volunteer, or partner
                 to create lasting change in communities across India.
@@ -320,21 +319,21 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
               >
                 <Link
                   href="/donate"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-violet-600 font-bold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-violet-600 font-bold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-sm sm:text-base"
                 >
-                  <Heart className="w-5 h-5" />
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
                   Donate Now
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 text-white font-semibold rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
                 >
                   Get Involved
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
               </motion.div>
             </div>
