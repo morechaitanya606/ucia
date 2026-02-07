@@ -464,3 +464,27 @@ body {
 .section-alt {
   background: linear-gradient(to bottom, var(--surface), var(--background));
 }
+
+/* Animated Gradient Text */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 4s ease infinite;
+}
+
+/* Mobile Touch Feedback */
+@media (hover: none) and (pointer: coarse) {
+  .active\:scale-\[0\.98\]:active {
+    transform: scale(0.98);
+  }
+}

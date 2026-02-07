@@ -4,14 +4,14 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X, Heart, Home, FolderOpen, Info, Mail } from 'lucide-react';
 import { Logo } from '@/components/Logo';
 
 const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/', label: 'Home', icon: Home },
+    { href: '/projects', label: 'Projects', icon: FolderOpen },
+    { href: '/about', label: 'About', icon: Info },
+    { href: '/contact', label: 'Contact', icon: Mail },
 ];
 
 export default function Navbar() {
@@ -27,6 +27,23 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Close menu when route changes
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
+
+    // Prevent body scroll when menu is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
+
     return (
         <>
             <motion.nav
@@ -34,11 +51,11 @@ export default function Navbar() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                    ? 'glass py-4'
-                    : 'bg-transparent py-6'
+                    ? 'glass py-3 sm:py-4'
+                    : 'bg-transparent py-4 sm:py-6'
                     }`}
             >
-                <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-5 sm:px-6 flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="block group">
                         <Logo />
@@ -64,7 +81,7 @@ export default function Navbar() {
                         ))}
                     </div>
 
-                    {/* Donate CTA */}
+                    {/* Donate CTA - Desktop */}
                     <div className="hidden md:flex items-center gap-3">
                         <Link
                             href="/donate"
@@ -79,14 +96,15 @@ export default function Navbar() {
                     {/* Mobile Menu Toggle */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden p-2 text-text-muted hover:text-foreground transition-colors"
+                        className="md:hidden p-2.5 -mr-2 text-foreground hover:bg-gray-100 rounded-xl transition-colors"
+                        aria-label="Toggle menu"
                     >
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isOpen ? <X size={22} /> : <Menu size={22} />}
                     </button>
                 </div>
             </motion.nav>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu - Full Screen */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -100,53 +118,66 @@ export default function Navbar() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute inset-0 bg-background/90 backdrop-blur-xl"
+                            className="absolute inset-0 bg-white"
                             onClick={() => setIsOpen(false)}
                         />
 
                         {/* Menu Content */}
                         <motion.div
-                            initial={{ x: '100%' }}
-                            animate={{ x: 0 }}
-                            exit={{ x: '100%' }}
-                            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                            className="absolute right-0 top-0 h-full w-80 bg-surface border-l border-border p-6 pt-24"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 20 }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                            className="relative h-full pt-20 pb-8 px-5 flex flex-col"
                         >
-                            <nav className="flex flex-col gap-2">
-                                {navLinks.map((link, index) => (
-                                    <motion.div
-                                        key={link.href}
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                    >
-                                        <Link
-                                            href={link.href}
-                                            onClick={() => setIsOpen(false)}
-                                            className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors ${pathname === link.href
-                                                ? 'bg-violet/10 text-violet'
-                                                : 'text-text-muted hover:text-foreground hover:bg-surface-light'
-                                                }`}
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </motion.div>
-                                ))}
+                            {/* Nav Links */}
+                            <nav className="flex-1 py-6">
+                                <div className="space-y-2">
+                                    {navLinks.map((link, index) => {
+                                        const Icon = link.icon;
+                                        const isActive = pathname === link.href;
+                                        return (
+                                            <motion.div
+                                                key={link.href}
+                                                initial={{ opacity: 0, x: -20 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: index * 0.05 }}
+                                            >
+                                                <Link
+                                                    href={link.href}
+                                                    onClick={() => setIsOpen(false)}
+                                                    className={`flex items-center gap-4 px-4 py-4 rounded-2xl text-lg font-medium transition-all ${isActive
+                                                        ? 'bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-lg shadow-violet-500/20'
+                                                        : 'text-gray-700 hover:bg-gray-100 active:bg-gray-100'
+                                                        }`}
+                                                >
+                                                    <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                                                    {link.label}
+                                                </Link>
+                                            </motion.div>
+                                        );
+                                    })}
+                                </div>
                             </nav>
 
+                            {/* Bottom CTAs */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 }}
-                                className="mt-8"
+                                transition={{ delay: 0.25 }}
+                                className="space-y-3"
                             >
                                 <Link
-                                    href="/contact"
+                                    href="/donate"
                                     onClick={() => setIsOpen(false)}
-                                    className="btn-primary w-full text-center block"
+                                    className="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-violet-600 to-pink-500 text-white font-semibold rounded-2xl shadow-lg shadow-violet-500/20 active:scale-[0.98] transition-transform"
                                 >
-                                    Get Started
+                                    <Heart className="w-5 h-5" />
+                                    Donate Now
                                 </Link>
+                                <p className="text-center text-xs text-gray-400 pt-2">
+                                    UICA — Transforming Communities
+                                </p>
                             </motion.div>
                         </motion.div>
                     </motion.div>
