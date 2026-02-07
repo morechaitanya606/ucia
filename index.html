@@ -60,93 +60,162 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="section" id="projects" style="background: var(--gray-50);">
-        <div class="section-header">
-            <h2 class="section-title">Our Projects</h2>
-            <p class="section-subtitle">Transforming rural communities through innovation, empowerment, and sustainable development</p>
+    <!-- Projects Section - Horizontal Scroll Gallery -->
+    <section class="projects-section" id="projects">
+        <div class="projects-header">
+            <div class="projects-header-content">
+                <h2 class="projects-title">Our Projects</h2>
+                <p class="projects-subtitle">Transforming rural communities through innovation, empowerment, and sustainable development</p>
+            </div>
+            <div class="scroll-hint">
+                <span>Scroll to explore</span>
+                <div class="scroll-arrow">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
         </div>
 
-        <div class="card-grid">
-            <!-- Project RUDRA -->
-            <div class="card">
-                <div class="card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                    <div class="card-icon">🌱</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Project RUDRA</h3>
-                    <p class="card-subtitle">Rural & Urban Development through Resilience and Action</p>
-                    <ul class="card-features">
-                        <li>Technology, AI, GIS training</li>
-                        <li>Sustainable farming techniques</li>
-                        <li>Stitching, embroidery, art forms</li>
-                        <li>Environment & wildlife conservation</li>
-                    </ul>
-                    <a href="rudra.html" class="card-link">Explore Project RUDRA →</a>
-                    <div class="card-goal">
-                        <strong>Goal:</strong> Build self-sustainable, competitive individuals
+        <div class="projects-gallery">
+            <div class="gallery-track">
+                <!-- Project RUDRA -->
+                <article class="project-slide" data-project="rudra">
+                    <div class="project-image-wrapper">
+                        <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #1a1a2e 100%);">
+                            <div class="project-image-overlay"></div>
+                            <div class="project-icon">🌱</div>
+                            <div class="floating-shapes">
+                                <div class="shape shape-1"></div>
+                                <div class="shape shape-2"></div>
+                                <div class="shape shape-3"></div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-number">01</span>
+                            <h3 class="project-title">Project RUDRA</h3>
+                            <p class="project-tagline">Rural & Urban Development through Resilience and Action</p>
+                            <ul class="project-features">
+                                <li>Technology, AI, GIS training</li>
+                                <li>Sustainable farming techniques</li>
+                                <li>Stitching, embroidery, art forms</li>
+                                <li>Environment & wildlife conservation</li>
+                            </ul>
+                            <a href="rudra.html" class="project-link">
+                                <span>Explore Project</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- Project HEMA -->
-            <div class="card">
-                <div class="card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                    <div class="card-icon">🧵</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Project HEMA</h3>
-                    <p class="card-subtitle">Handloom Empowerment for Mahila Artisans</p>
-                    <ul class="card-features">
-                        <li>Khadi production training</li>
-                        <li>Product designing: bedsheets, garments, sarees</li>
-                        <li>Quality control and marketing</li>
-                    </ul>
-                    <a href="hema.html" class="card-link">Explore Project HEMA →</a>
-                    <div class="card-goal">
-                        <strong>Goal:</strong> Empower rural women artisans to create high-quality, sellable Khadi products
+                <!-- Project HEMA -->
+                <article class="project-slide" data-project="hema">
+                    <div class="project-image-wrapper">
+                        <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #1a1a2e 100%);">
+                            <div class="project-image-overlay"></div>
+                            <div class="project-icon">🧵</div>
+                            <div class="floating-shapes">
+                                <div class="shape shape-1"></div>
+                                <div class="shape shape-2"></div>
+                                <div class="shape shape-3"></div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-number">02</span>
+                            <h3 class="project-title">Project HEMA</h3>
+                            <p class="project-tagline">Handloom Empowerment for Mahila Artisans</p>
+                            <ul class="project-features">
+                                <li>Khadi production training</li>
+                                <li>Product designing: bedsheets, garments, sarees</li>
+                                <li>Quality control and marketing</li>
+                            </ul>
+                            <a href="hema.html" class="project-link">
+                                <span>Explore Project</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- Project AFIU -->
-            <div class="card">
-                <div class="card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                    <div class="card-icon">💡</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Project AFIU</h3>
-                    <p class="card-subtitle">Active Fellow Intelligence Unit</p>
-                    <ul class="card-features">
-                        <li>Select rural fellows for local ecosystem study</li>
-                        <li>Co-create sustainable products (bamboo goods, organic fertilizers)</li>
-                        <li>Innovation-driven development</li>
-                    </ul>
-                    <a href="AFIU.html" class="card-link">Explore Project AFIU →</a>
-                    <div class="card-goal">
-                        <strong>Goal:</strong> Make every village self-sustainable through knowledge and innovation
+                <!-- Project AFIU -->
+                <article class="project-slide" data-project="afiu">
+                    <div class="project-image-wrapper">
+                        <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #1a1a2e 100%);">
+                            <div class="project-image-overlay"></div>
+                            <div class="project-icon">💡</div>
+                            <div class="floating-shapes">
+                                <div class="shape shape-1"></div>
+                                <div class="shape shape-2"></div>
+                                <div class="shape shape-3"></div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-number">03</span>
+                            <h3 class="project-title">Project AFIU</h3>
+                            <p class="project-tagline">Active Fellow Intelligence Unit</p>
+                            <ul class="project-features">
+                                <li>Select rural fellows for local ecosystem study</li>
+                                <li>Co-create sustainable products</li>
+                                <li>Innovation-driven development</li>
+                            </ul>
+                            <a href="AFIU.html" class="project-link">
+                                <span>Explore Project</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </article>
 
-            <!-- Consultation & Auditing -->
-            <div class="card">
-                <div class="card-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
-                    <div class="card-icon">📊</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Consultation & Auditing</h3>
-                    <p class="card-subtitle">Sustainable Business Practices</p>
-                    <ul class="card-features">
-                        <li>Green Auditing services</li>
-                        <li>ESG & CSR Compliance</li>
-                        <li>Zero-waste & Energy Audits</li>
-                    </ul>
-                    <a href="audit.html" class="card-link">Explore Auditing Services →</a>
-                    <div class="card-goal">
-                        <strong>Goal:</strong> Ensure sustainable practices in industries and organizations
+                <!-- Consultation & Auditing -->
+                <article class="project-slide" data-project="audit">
+                    <div class="project-image-wrapper">
+                        <div class="project-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 50%, #1a1a2e 100%);">
+                            <div class="project-image-overlay"></div>
+                            <div class="project-icon">📊</div>
+                            <div class="floating-shapes">
+                                <div class="shape shape-1"></div>
+                                <div class="shape shape-2"></div>
+                                <div class="shape shape-3"></div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-number">04</span>
+                            <h3 class="project-title">Consultation & Auditing</h3>
+                            <p class="project-tagline">Sustainable Business Practices</p>
+                            <ul class="project-features">
+                                <li>Green Auditing services</li>
+                                <li>ESG & CSR Compliance</li>
+                                <li>Zero-waste & Energy Audits</li>
+                            </ul>
+                            <a href="audit.html" class="project-link">
+                                <span>Explore Project</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Gallery Progress -->
+        <div class="gallery-progress">
+            <div class="progress-track">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="progress-dots">
+                <button class="progress-dot active" data-index="0"></button>
+                <button class="progress-dot" data-index="1"></button>
+                <button class="progress-dot" data-index="2"></button>
+                <button class="progress-dot" data-index="3"></button>
             </div>
         </div>
     </section>
