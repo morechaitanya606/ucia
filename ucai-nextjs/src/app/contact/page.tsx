@@ -59,14 +59,14 @@ export default function ContactPage() {
         {
             icon: Mail,
             label: 'Email Us',
-            value: 'contact@uica.org',
-            href: 'mailto:contact@uica.org',
+            value: 'contact.info@uica.in',
+            href: 'mailto:contact.info@uica.in',
         },
         {
             icon: Phone,
             label: 'Call Us',
-            value: '+91 98765 43210',
-            href: 'tel:+919876543210',
+            value: '+91 70284 78109',
+            href: 'tel:+917028478109',
         },
         {
             icon: MapPin,

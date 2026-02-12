@@ -113,15 +113,15 @@ export default function Footer() {
                         </h3>
                         <ul className="space-y-2 sm:space-y-3">
                             <li>
-                                <a href="mailto:contact@uica.org" className="flex items-center gap-2 text-sm text-gray-600 hover:text-violet-600 transition-colors">
+                                <a href="mailto:contact.info@uica.in" className="flex items-center gap-2 text-sm text-gray-600 hover:text-violet-600 transition-colors">
                                     <Mail className="w-4 h-4 text-violet-500" />
-                                    contact@uica.org
+                                    contact.info@uica.in
                                 </a>
                             </li>
                             <li>
-                                <a href="tel:+919876543210" className="flex items-center gap-2 text-sm text-gray-600 hover:text-violet-600 transition-colors">
+                                <a href="tel:+917028478109" className="flex items-center gap-2 text-sm text-gray-600 hover:text-violet-600 transition-colors">
                                     <Phone className="w-4 h-4 text-violet-500" />
-                                    +91 98765 43210
+                                    +91 70284 78109
                                 </a>
                             </li>
                             <li className="flex items-start gap-2 text-sm text-gray-600">
