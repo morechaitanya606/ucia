@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight, Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 
 // Project data
@@ -18,6 +19,7 @@ const projects = [
         gradient: 'from-violet-600 to-purple-900',
         href: '/projects/rudra',
         stats: { value: '500+', label: 'Trained' },
+        image: '/images/projects/rudra/rudra-1.jpg',
     },
     {
         id: 'hema',
@@ -30,6 +32,7 @@ const projects = [
         gradient: 'from-pink-500 to-rose-900',
         href: '/projects/hema',
         stats: { value: '300+', label: 'Women' },
+        image: '/images/projects/hema/hema-2.jpg',
     },
     {
         id: 'afiu',
@@ -42,6 +45,7 @@ const projects = [
         gradient: 'from-cyan-500 to-blue-900',
         href: '/projects/afiu',
         stats: { value: '100+', label: 'Fellows' },
+        image: '/images/projects/afiu/afiu-1.jpg',
     },
     {
         id: 'audit',
@@ -54,6 +58,7 @@ const projects = [
         gradient: 'from-emerald-500 to-teal-900',
         href: '/projects/audit',
         stats: { value: '200+', label: 'Audits' },
+        image: '',
     },
 ];
 
@@ -132,6 +137,16 @@ function MobileProjectCard({ project, index }: { project: typeof projects[0]; in
         >
             <Link href={project.href} className="block group">
                 <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${project.gradient} min-h-[70vh] flex flex-col justify-end p-6`}>
+                    {/* Background image */}
+                    {project.image && (
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover opacity-40"
+                            sizes="100vw"
+                        />
+                    )}
                     {/* Background number */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-[0.03]">
                         <span className="text-[60vw] font-black text-white leading-none">
@@ -223,7 +238,18 @@ function DesktopProjectSlide({
                     animate={{ scale: isActive ? 1 : 1.1 }}
                     transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
                 >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
+                    {/* Background image */}
+                    {project.image && (
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover"
+                            sizes="100vw"
+                            priority={index === 0}
+                        />
+                    )}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} ${project.image ? 'opacity-60' : ''}`} />
                     <div className="absolute inset-0 flex items-center justify-center">
                         <motion.span
                             className="text-[40vw] font-black text-white/[0.03] select-none leading-none"

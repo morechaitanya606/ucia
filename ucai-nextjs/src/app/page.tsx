@@ -2,15 +2,13 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
-  Cpu,
-  Leaf,
-  Users,
   ArrowRight,
   Target,
   Zap,
   Globe,
-  HeartHandshake,
+  Users,
   Sparkles,
   Heart,
   TrendingUp,
@@ -48,7 +46,7 @@ const projects = [
     title: 'RUDRA',
     fullTitle: 'Project RUDRA',
     description: 'AI, GIS & skill training for rural communities',
-    icon: Cpu,
+    logo: '/images/projects/rudra/logo.jpg',
     gradient: 'from-violet-500 to-purple-600',
     stats: { value: '500+', label: 'Trained' },
   },
@@ -56,7 +54,7 @@ const projects = [
     title: 'HEMA',
     fullTitle: 'Project HEMA',
     description: 'Khadi heritage & women artisan empowerment',
-    icon: HeartHandshake,
+    logo: '/images/projects/hema/logo.jpg',
     gradient: 'from-pink-500 to-rose-600',
     stats: { value: '300+', label: 'Women' },
   },
@@ -64,7 +62,7 @@ const projects = [
     title: 'AFIU',
     fullTitle: 'Project AFIU',
     description: 'Youth-led village innovation programs',
-    icon: Users,
+    logo: '/images/projects/afiu/logo.jpg',
     gradient: 'from-cyan-500 to-blue-600',
     stats: { value: '100+', label: 'Fellows' },
   },
@@ -72,7 +70,7 @@ const projects = [
     title: 'Green Audit',
     fullTitle: 'Environmental Auditing',
     description: 'Sustainability consulting for businesses',
-    icon: Leaf,
+    logo: '/images/projects/audit/logo.jpg',
     gradient: 'from-emerald-500 to-teal-600',
     stats: { value: '200+', label: 'Audits' },
   },
@@ -152,8 +150,8 @@ export default function HomePage() {
                     <div className="p-5 sm:p-6">
                       {/* Top Row */}
                       <div className="flex items-start justify-between mb-4">
-                        <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${project.gradient} flex items-center justify-center shadow-lg`}>
-                          <project.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden bg-white shadow-lg">
+                          <Image src={project.logo} alt={`${project.title} logo`} width={56} height={56} className="object-contain w-full h-full" />
                         </div>
                         <div className="text-right">
                           <div className="text-xl sm:text-2xl font-bold text-gray-900">{project.stats.value}</div>
@@ -331,6 +329,6 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

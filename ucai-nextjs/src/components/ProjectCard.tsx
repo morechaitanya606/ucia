@@ -2,12 +2,13 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowUpRight, LucideIcon } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 
 interface ProjectCardProps {
     title: string;
     description: string;
-    icon: LucideIcon;
+    logo?: string;
     gradient: string;
     href: string;
     stats?: { value: string; label: string }[];
@@ -17,7 +18,7 @@ interface ProjectCardProps {
 export default function ProjectCard({
     title,
     description,
-    icon: Icon,
+    logo,
     gradient,
     href,
     stats,
@@ -44,12 +45,14 @@ export default function ProjectCard({
                 <div className="relative p-5 sm:p-6 md:p-8">
                     {/* Header Row */}
                     <div className="flex items-start justify-between mb-4 sm:mb-6">
-                        {/* Icon */}
-                        <div
-                            className={`w-12 h-12 sm:w-14 md:w-16 sm:h-14 md:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center ${gradient} shadow-lg`}
-                        >
-                            <Icon className="w-6 h-6 sm:w-7 md:w-8 sm:h-7 md:h-8 text-white" />
-                        </div>
+                        {/* Logo */}
+                        {logo ? (
+                            <div className="w-12 h-12 sm:w-14 md:w-16 sm:h-14 md:h-16 rounded-xl sm:rounded-2xl overflow-hidden bg-white shadow-lg">
+                                <Image src={logo} alt={`${title} logo`} width={64} height={64} className="object-contain w-full h-full" />
+                            </div>
+                        ) : (
+                            <div className={`w-12 h-12 sm:w-14 md:w-16 sm:h-14 md:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center ${gradient} shadow-lg`} />
+                        )}
 
                         {/* Arrow */}
                         <motion.div
